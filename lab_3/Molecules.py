@@ -5,17 +5,12 @@
 from random import randint
 import math 
 import turtle
-import time
 
-start_time = time.time()
 turtle.tracer(0, 0)
 turtle.setup(700, 700)
 
 turtle.title("Molecules")
-
-
 number_of_turtles = 30
-steps_of_time_number = 10000
 
 # отрисовка стенок
 border = turtle.Turtle()
@@ -23,13 +18,22 @@ border.up()
 border.goto(300, 300)
 border.down()
 border.pensize(6)
-
 border.hideturtle()
 border.goto(300, -300)
 border.goto(-300, -300)
 border.goto(-300, 300)
 border.goto(300, 300)
-turtle.update() 
+turtle.update()
+
+# создание шариков
+pool = [turtle.Turtle(shape='circle', visible=False) for i in range(number_of_turtles)]
+for unit in pool:
+    unit.penup()
+    unit.shapesize(0.5)
+    unit.speed(0)
+    unit.setheading(randint(-180, 180))
+    unit.goto(randint(-245, 245), randint(-245, 245))
+    unit.showturtle()
 
 
 def collision_walls(mol):
@@ -71,16 +75,6 @@ def collision_mol(mol):
                 leng = math.sqrt((unit.xcor() - mol.xcor())**2 + (unit.ycor() - mol.ycor())**2)
     return
 
-
-# создание шариков
-pool = [turtle.Turtle(shape='circle', visible=False) for i in range(number_of_turtles)]
-for unit in pool:
-    unit.penup()
-    unit.shapesize(0.5)
-    unit.speed(0)
-    unit.setheading(randint(-180, 180))
-    unit.goto(randint(-245, 245), randint(-245, 245))
-    unit.showturtle() 
 
 # основное действие
 incr = 0
