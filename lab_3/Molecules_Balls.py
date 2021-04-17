@@ -95,4 +95,4 @@ while True:
 
         if not key:
             unit.forward(1)
-        turtle.update()
+    turtle.update()
