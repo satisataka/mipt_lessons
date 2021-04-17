@@ -10,7 +10,7 @@ turtle.tracer(0, 0)
 turtle.setup(700, 700)
 
 turtle.title("Molecules")
-number_of_turtles = 30
+number_of_turtles = 50
 
 # отрисовка стенок
 border = turtle.Turtle()
@@ -30,7 +30,7 @@ pool = [turtle.Turtle(shape='circle', visible=False) for i in range(number_of_tu
 for unit in pool:
     unit.penup()
     unit.shapesize(0.5)
-    unit.speed(0)
+    unit.speed(1)
     unit.setheading(randint(-180, 180))
     unit.goto(randint(-245, 245), randint(-245, 245))
     unit.showturtle()
@@ -77,9 +77,11 @@ def collision_mol(mol):
 
 
 # основное действие
-incr = 0
+
 while True:
+    incr = 0
     for unit in pool:
+        incr += 1
         flag = True
         collision_mol(unit)
 
@@ -90,4 +92,6 @@ while True:
 
         if flag:
             unit.forward(5)
-        turtle.update()
+        
+        if pool.index(unit) % 5 == 0:
+            turtle.update()
