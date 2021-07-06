@@ -1,0 +1,3 @@
+fullscreen:False
+num_game:1
+select_ball:0
